@@ -67,14 +67,11 @@ public class DPSetofNumberAddUptoK {
     }
 
     private static int dprec(final int[] arr, final Integer total, final Integer i, final HashMap<String, Integer> mem) {
-
         final String key = total.toString() + ":" + i.toString();
-
         if (mem.containsKey(key)) {
             System.out.println("key- " + key);
             return mem.get(key);
         }
-
         int result;
         System.out.println("Called");
         if (total == 0)
