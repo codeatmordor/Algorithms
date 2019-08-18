@@ -23,7 +23,7 @@
  *******************************************************************/
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gks.problems;
+package org.gks.problems.tree;
 
 import java.util.Map.Entry;
 import java.util.TreeMap;

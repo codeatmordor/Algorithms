@@ -13,7 +13,7 @@
  * with the terms of this Agreement.
  */
 /********************************************************************
- * File Name:    StringDeletion.java
+ * File Name:    LevelOrderTraversal.java
  *
  * Date Created: Aug 18, 2019
  *
@@ -23,62 +23,67 @@
  *******************************************************************/
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gks.problems;
+package org.gks.problems.tree;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Set;
 
 /**
  * @author Gaurav_Singh3
  *
  */
-public class StringDeletion {
+public class LevelOrderTraversal {
 
-    /*
-     * Given a string and a dictionary HashSet, write a function to determine
-     * the minimum number of characters to delete to make a word. dictionary:
-     * [“a”, “aa”, “aaa”] , query: “abc” ,output: 2
-     *
-     */
+    private class Node {
+        String value;
+        Node left;
+        Node right;
 
-    public static void main(String[] args) {
-        HashSet<String> s = new HashSet<>();
-        s.add("a");
-        s.add("aa");
-        s.add("aaa");
-
-        String q = "abcde";
-        System.out.println(getMinOp(q, s));
+        /**
+         * @param value
+         */
+        public Node(String value) {
+            super();
+            this.value = value;
+        }
     }
 
-    // abc
-    // / \ \
-    // ab bc ac
-    // /\ /\ /\
-    // a b b c a c
-    public static int getMinOp(String str, HashSet<String> dict) {
-        Queue<String> q = new LinkedList<>();
-        Set<String> eSet = new HashSet<>();
-        q.add(str);
-        eSet.add(str);
+    private Node r;
 
+    /**
+     * @param r
+     */
+    public LevelOrderTraversal(String value) {
+        super();
+        this.r = new Node(value);
+        r.left = new Node("b");
+        r.right = new Node("c");
+        r.left.left = new Node("d");
+        r.left.right = new Node("e");
+        r.right.left = new Node("f");
+        r.right.right = new Node("g");
+    }
+
+    public void traverse(Node r) {
+        Queue<Node> q = new LinkedList<>();
+        q.add(r);
         while (!q.isEmpty()) {
-            String s = q.remove();
-            eSet.remove(s);
-            if (dict.contains(s)) {
-                return str.length() - s.length();
-            }
-            for (int i = 0; i < s.length(); i++) {
-                String substr = s.substring(0, i) + s.substring(i + 1, s.length());
-                if (!eSet.contains(substr) && substr.length() > 0) {
-                    q.add(substr);
-                    eSet.add(substr);
-                }
-            }
+            Node n = q.remove();
+            System.out.print(n.value + " ");
+            if (n.left != null)
+                q.add(n.left);
+            if (n.right != null)
+                q.add(n.right);
         }
-        return -1;
+    }
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        LevelOrderTraversal l = new LevelOrderTraversal("a");
+        l.traverse(l.r);
+
     }
 
 }
