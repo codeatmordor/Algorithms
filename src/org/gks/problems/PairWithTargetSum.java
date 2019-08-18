@@ -46,12 +46,13 @@ public class PairWithTargetSum {
         int left = 0;
         int end = arr.length - 1;
         while (left < end) {
-            if (arr[left] + arr[end] > targetSum)
-                end--;
-            else if (arr[left] + arr[end] < targetSum)
+            final int targetDiff = targetSum - arr[left];
+            if (targetDiff == arr[end])
+                return new int[] { left, end };
+            if (targetDiff > arr[end])
                 left++;
             else
-                return new int[] { arr[left], arr[end] };
+                end--;
         }
 
         return new int[] { -1, -1 };
