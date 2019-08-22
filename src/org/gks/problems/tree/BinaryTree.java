@@ -1,10 +1,8 @@
 package org.gks.problems.tree;
 
-import org.gks.problems.Node;
+// Java program to print binary tree in reverse order
 
-// Java program to print binary tree in reverse order 
-
-// A binary tree node 
+// A binary tree node
 class Node {
     int data;
     Node left, right;

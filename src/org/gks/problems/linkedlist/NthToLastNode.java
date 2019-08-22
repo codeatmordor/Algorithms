@@ -30,66 +30,11 @@ package org.gks.problems.linkedlist;
  *
  */
 public class NthToLastNode {
-
-    private class Node {
-        String value;
-        Node next;
-
-        Node(String value) {
-            this.value = value;
-            this.next = null;
-        }
-    }
-
-    private Node start;
-    private int length;
-
-    public void add(String value) {
-        Node curr = start;
-        while (curr.next != null) {
-            curr = curr.next;
-        }
-        Node n = new Node(value);
-        n.next = null;
-        curr.next = n;
-        length++;
-    }
-
-    // 1->2->3->4->5->6>-7>-8
-
-    /**
-     * @param start
-     * @param length
-     */
-    public NthToLastNode(String value) {
-        super();
-        this.start = new Node(value);
-        start.next = null;
-        this.length = 1;
-    }
-
-    public String getNthToLastNode(int n) {
-        if (n > length)
-            throw new IllegalArgumentException();
-        int frombegin = (length - n) + 1;
-        int count = 1;
-        Node curr = start;
-        while (count < frombegin) {
-            curr = curr.next;
-            count++;
-        }
-        return curr.value;
-
-    }
-
     public static void main(String[] args) {
-        NthToLastNode n = new NthToLastNode("1");
+        LinkList n = new LinkList("1");
         for (int i = 2; i < 10; i++) {
             n.add(String.valueOf(i));
         }
-
         System.out.println(n.getNthToLastNode(7));
-
     }
-
 }
