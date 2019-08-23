@@ -1,24 +1,11 @@
-/** SYMANTEC: Copyright 2019 Symantec Corporation. All rights reserved.
- * THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION AND TRADE SECRETS OF
- * SYMANTEC CORPORATION.USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED
- * WITHOUT THE PRIOR EXPRESS WRITTEN PERMISSION OF SYMANTEC CORPORATION.
- * The Licensed Software and Documentation are deemed to be commercial
- * computer software as defined in FAR 12.212 and subject to restricted
- * rights as defined in FAR Section 52.227-19 "Commercial Computer Software
- * - Restricted Rights" and DFARS 227.7202, "Rights in Commercial Computer
- * Software or Commercial Computer Software Documentation", as applicable,
- * and any successor regulations.  Any use, modification, reproduction
- * release, performance, display or disclosure of the Licensed Software
- * and Documentation by the U.S. Government shall be solely in accordance
- * with the terms of this Agreement.
- */
+
 /********************************************************************
  * File Name:    BinaryTreeLevelOrder.java
  *
  * Date Created: Aug 22, 2019
  *
  * ------------------------------------------------------------------
- * Copyright (C) 2019 Symantec Ltd. All Rights Reserved.
+ *
  *
  *******************************************************************/
 
@@ -29,6 +16,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * @author Gaurav_Singh3
@@ -223,6 +211,126 @@ public class BinaryTreeLevelOrder {
 
     }
 
+    public static boolean hasPath(TreeNode root, int sum) {
+
+        if (root == null)
+            return false;
+
+        if (root.val == sum && root.left == null && root.right == null)
+            return true;
+
+        return hasPath(root.left, sum - root.val) || hasPath(root.right, sum - root.val);
+
+    }
+
+    public static List<List<Integer>> findAllPaths(TreeNode root, int sum) {
+        List<List<Integer>> allPaths = new ArrayList<>();
+        List<Integer> currPath = new ArrayList<>();
+
+        findPathRec(root, sum, allPaths, currPath);
+        return allPaths;
+    }
+
+    private static void findPathRec(TreeNode curr, int sum, List<List<Integer>> allPaths, List<Integer> path) {
+        if (curr == null)
+            return;
+
+        path.add(curr.val);
+
+        if (curr.val == sum && curr.left == null && curr.right == null) {
+            allPaths.add(new ArrayList<>(path));
+        } else {
+
+            findPathRec(curr.left, sum - curr.val, allPaths, path);
+
+            findPathRec(curr.right, sum - curr.val, allPaths, path);
+
+        }
+
+        path.remove(path.size() - 1);
+    }
+
+    public static List<List<Integer>> findAllRootToLeafPaths(TreeNode root) {
+        List<List<Integer>> allPaths = new ArrayList<>();
+        List<Integer> currPath = new ArrayList<>();
+
+        findPathRec2(root, allPaths, currPath);
+        return allPaths;
+    }
+
+    private static void findPathRec2(TreeNode curr, List<List<Integer>> allPaths, List<Integer> path) {
+        if (curr == null)
+            return;
+
+        path.add(curr.val);
+
+        if (curr.left == null && curr.right == null) {
+            allPaths.add(new ArrayList<>(path));
+        } else {
+
+            findPathRec2(curr.left, allPaths, path);
+
+            findPathRec2(curr.right, allPaths, path);
+
+        }
+
+        path.remove(path.size() - 1);
+    }
+
+    public static void printTreeBoundary(TreeNode root) {
+        List<TreeNode> res = new LinkedList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+
+        ArrayList<TreeNode> rview = new ArrayList<>();
+        ArrayList<TreeNode> lview = new ArrayList<>();
+
+        while (!q.isEmpty()) {
+            int lsize = q.size();
+
+            for (int i = 0; i < lsize; i++) {
+                TreeNode node = q.poll();
+                if (node.left == null && node.right == null)
+                    continue;
+                if (i == 0)
+                    lview.add(node);
+                if (i + 1 == lsize)
+                    rview.add(node);
+                if (node.left != null)
+                    q.offer(node.left);
+                if (node.right != null)
+                    q.offer(node.right);
+
+            }
+        }
+
+        res.addAll(lview);
+        res.addAll(findLeavesDFS(root));
+        res.addAll(rview);
+
+        res.stream().forEach(s -> System.out.print(s.val + " "));
+    }
+
+    private static List<TreeNode> findLeavesDFS(TreeNode root) {
+        List<TreeNode> leaves = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode currentNode = stack.pop();
+            if (currentNode.left == null && currentNode.right == null)
+                leaves.add(currentNode);
+
+            // insert the children of current node in the stack
+            // add the right child first, this way left child will be at the top
+            // and processed first
+            if (currentNode.right != null)
+                stack.push(currentNode.right);
+            if (currentNode.left != null)
+                stack.push(currentNode.left);
+        }
+        return leaves;
+    }
+
     public static List<Float> levelAverage(TreeNode r) {
         Queue<TreeNode> q = new LinkedList<>();
         List<Float> res = new LinkedList<>();
@@ -249,6 +357,9 @@ public class BinaryTreeLevelOrder {
         return res;
     }
 
+    /*
+     * =======================================================================
+     */
     public static void convertalllevelorder(TreeNode r) {
         Queue<TreeNode> q = new LinkedList<>();
 
@@ -278,14 +389,86 @@ public class BinaryTreeLevelOrder {
         }
     }
 
+    public static List<TreeNode> rightViewOfTree(TreeNode root) {
+        List<TreeNode> result = new ArrayList<>();
+        if (root == null)
+            return result;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode currentNode = queue.poll();
+                // if it is the last node of this level, add it to the result
+                if (i == levelSize - 1)
+                    result.add(currentNode);
+                // insert the children of current node in the queue
+                if (currentNode.left != null)
+                    queue.offer(currentNode.left);
+                if (currentNode.right != null)
+                    queue.offer(currentNode.right);
+            }
+        }
+
+        return result;
+    }
+
     BinaryTreeLevelOrder() {
 
     }
 
+    static class Maximum {
+        int max = Integer.MIN_VALUE;
+    }
+
+    public static void getTargetLeafNode(TreeNode node, Maximum max, int currsum) {
+        if (node == null)
+            return;
+
+        currsum += node.val;
+
+        if (node.left == null && node.right == null) {
+            if (currsum > max.max) {
+                max.max = currsum;
+                targetLeaf = node;
+            }
+        }
+
+        getTargetLeafNode(node.left, max, currsum);
+        getTargetLeafNode(node.right, max, currsum);
+    }
+
+    public static boolean printPath(TreeNode node, TreeNode targNode) {
+        if (node == null)
+            return false;
+
+        if (node == targNode || printPath(node.left, targNode) || printPath(node.right, targNode)) {
+            System.out.println(node.val + " ");
+            return true;
+        }
+        return false;
+    }
+
+    public static int maxSumPath(TreeNode n) {
+        if (n == null)
+            return 0;
+
+        getTargetLeafNode(n, max, 0);
+
+        printPath(n, targetLeaf);
+        return max.max;
+    }
+	
+	
+	
+
     TreeNode r;
+    static TreeNode targetLeaf;
+    static Maximum max = new Maximum();
 
     public static void main(String[] args) {
-
+        // max = new Maximum();
         BinaryTreeLevelOrder b = new BinaryTreeLevelOrder();
         b.r = new TreeNode(5);
         b.r.left = new TreeNode(6);
@@ -294,47 +477,76 @@ public class BinaryTreeLevelOrder {
         b.r.left.right = new TreeNode(9);
         b.r.right.left = new TreeNode(10);
         b.r.right.right = new TreeNode(11);
-        b.levelOrder(b.r).stream().forEach(l -> {
+
+        newline("levelOrder");
+        BinaryTreeLevelOrder.levelOrder(b.r).stream().forEach(l -> {
             l.stream().forEach(s -> System.out.print(s + " "));
             System.out.println();
         });
 
-        System.out.print(System.lineSeparator());
-        System.out.print(System.lineSeparator());
+        newline("reverselevelOrder");
 
-        b.reverselevelOrder(b.r).stream().forEach(l -> {
+        BinaryTreeLevelOrder.reverselevelOrder(b.r).stream().forEach(l -> {
             l.stream().forEach(s -> System.out.print(s + " "));
             System.out.println();
         });
 
-        System.out.print(System.lineSeparator());
-        System.out.print(System.lineSeparator());
+        newline("zigzag");
 
-        b.zigzag(b.r).stream().forEach(l -> {
+        BinaryTreeLevelOrder.zigzag(b.r).stream().forEach(l -> {
             l.stream().forEach(s -> System.out.print(s + " "));
             System.out.println();
         });
 
+        newline("levelAverage");
+
+        BinaryTreeLevelOrder.levelAverage(b.r).stream().forEach(s -> System.out.println(s + " "));
+
+        newline("levelordersuccessor");
+
+        System.out.println(BinaryTreeLevelOrder.levelordersuccessor(b.r, 11));
+
+        newline("connectlevelordersiblings");
+
+        BinaryTreeLevelOrder.connectlevelordersiblings(b.r);
+
+        newline("convertalllevelorder");
+
+        BinaryTreeLevelOrder.convertalllevelorder(b.r);
+
+        newline("rightViewOfTree");
+
+        BinaryTreeLevelOrder.rightViewOfTree(b.r).stream().forEach(s -> System.out.print(s.val + " "));
+
+        newline("printTreeBoundary");
+
+        BinaryTreeLevelOrder.printTreeBoundary(b.r);
+
+        newline("hasPath");
+        System.out.println(BinaryTreeLevelOrder.hasPath(b.r, 19));
+
+        newline("findAllRootToLeafPaths");
+
+        BinaryTreeLevelOrder.findAllRootToLeafPaths(b.r).stream().forEach(l -> {
+            l.stream().forEach(s -> System.out.print(s + " "));
+            System.out.println();
+        });
+
+        newline("maxSumPath");
+
+        System.out.println(BinaryTreeLevelOrder.maxSumPath(b.r));
+
+    }
+
+    /**
+     *
+     */
+    private static void newline(String methodName) {
+
         System.out.print(System.lineSeparator());
         System.out.print(System.lineSeparator());
-
-        b.levelAverage(b.r).stream().forEach(s -> System.out.println(s + " "));
-
-        System.out.print(System.lineSeparator());
-        System.out.print(System.lineSeparator());
-
-        System.out.println(b.levelordersuccessor(b.r, 11));
-
-        System.out.print(System.lineSeparator());
-        System.out.print(System.lineSeparator());
-
-        b.connectlevelordersiblings(b.r);
-
-        System.out.print(System.lineSeparator());
-        System.out.print(System.lineSeparator());
-
-        b.convertalllevelorder(b.r);
-
+        System.out.println("/*************************** " + methodName + " *****************************************************/");
+        System.out.println();
     }
 
 }
