@@ -36,6 +36,31 @@ public class BinaryTreeDFS {
 
     }
 
+    public static boolean findPath(TreeNode root, int[] sequence) {
+        if (root == null)
+            return sequence.length == 0;
+
+        return findPathRecursive(root, sequence, 0);
+    }
+
+    private static boolean findPathRecursive(TreeNode currentNode, int[] sequence, int sequenceIndex) {
+
+        if (currentNode == null)
+            return false;
+
+        if (sequenceIndex >= sequence.length || currentNode.val != sequence[sequenceIndex])
+            return false;
+
+        // if the current node is a leaf, add it is the end of the sequence, we
+        // have found a path!
+        if (currentNode.left == null && currentNode.right == null && sequenceIndex == sequence.length - 1)
+            return true;
+
+        // recursively call to traverse the left and right sub-tree
+        // return true if any of the two recusrive call return true
+        return findPathRecursive(currentNode.left, sequence, sequenceIndex + 1) || findPathRecursive(currentNode.right, sequence, sequenceIndex + 1);
+    }
+
     public static void main(String[] args) {
         TreeNode r = new TreeNode(5);
         r.left = new TreeNode(6);
@@ -49,6 +74,11 @@ public class BinaryTreeDFS {
         List<Integer> res = new ArrayList<>();
         BinaryTreeDFS.findRootToLeafPathNumber(r, 0, res);
         res.stream().forEach(s -> System.out.print(s + " "));
+
+        System.out.println();
+
+        System.out.println("Tree has path sequence: " + BinaryTreeDFS.findPath(r, new int[] { 5, 6, 7 }));
+        System.out.println("Tree has path sequence: " + BinaryTreeDFS.findPath(r, new int[] { 5, 6, 9 }));
 
     }
 
