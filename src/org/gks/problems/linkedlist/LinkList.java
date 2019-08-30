@@ -1,3 +1,5 @@
+package org.gks.problems.linkedlist;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,5 +100,46 @@ public class LinkList {
         list.next = null;
         toReturn.add(this.start);
         return toReturn;
+    }
+
+    public void displayMiddle() {
+        Node list = this.start;
+        Node fast = list;
+
+        while (fast != null && fast.next != null) {
+            if (fast == null) {
+                System.out.println(list.toString());
+                break;
+            }
+
+            list = list.next;
+            if (fast.next.next != null)
+                fast = fast.next.next;
+        }
+
+    }
+
+    public void reverse() {
+        Node n = this.start;
+        Node prev = null;
+        Node temp = null;
+        while (n != null) {
+            temp = n.next;
+            n.next = prev;
+            prev = n;
+            n = temp;
+        }
+        this.start = prev;
+
+    }
+
+    public void display() {
+        Node n = this.start;
+
+        while (n != null) {
+            System.out.println(n.value);
+            n = n.next;
+        }
+
     }
 }

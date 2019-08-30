@@ -35,6 +35,13 @@ public class NthToLastNode {
         for (int i = 2; i < 10; i++) {
             n.add(String.valueOf(i));
         }
-        System.out.println(n.getNthToLastNode(7));
+
+        n.display();
+        /*
+         * System.out.println(n.getNthToLastNode(7)); n.displayMiddle();
+         */
+
+        n.reverse();
+        n.display();
     }
 }
