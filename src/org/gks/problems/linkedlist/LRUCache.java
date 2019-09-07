@@ -1,7 +1,6 @@
 package org.gks.problems.linkedlist;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class LRUCache {
 
@@ -11,7 +10,7 @@ public class LRUCache {
         DNode prev, next;
     }
 
-    private Map<Integer, DNode> mp = new HashMap<>();
+    private ConcurrentHashMap<Integer, DNode> mp = new ConcurrentHashMap<>();
     private DNode head, tail;
     private int maxCap;
     private int currSize;
