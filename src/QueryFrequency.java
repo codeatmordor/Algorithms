@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -79,7 +80,7 @@ class Printer {
 
     }
 
-    public class QueryFrequency {
+    public static class QueryFrequency {
 
         // Complete the freqQuery function below.
         static List<Integer> freqQuery(List<List<Integer>> queries) {
@@ -121,7 +122,7 @@ class Printer {
 
             IntStream.range(0, q).forEach(i -> {
                 try {
-                    queries.add(Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" ")).map(Integer::parseInt).collect(toList()));
+                    queries.add(Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" ")).map(Integer::parseInt).collect(Collectors.toList()));
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -129,7 +130,7 @@ class Printer {
 
             List<Integer> ans = freqQuery(queries);
 
-            bufferedWriter.write(ans.stream().map(Object::toString).collect(joining("\n")) + "\n");
+            bufferedWriter.write(ans.stream().map(Object::toString).collect(Collectors.joining("\n")) + "\n");
 
             bufferedReader.close();
             bufferedWriter.close();

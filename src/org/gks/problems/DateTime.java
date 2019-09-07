@@ -17,8 +17,7 @@ class Result {
 
     public static String findDay(int month, int day, int year) {
 
-
-        String s = String.valueOf(i)
+        // String s = String.valueOf(i);
         Calendar c = Calendar.getInstance();
         c.clear();
         c.set(year, month - 1, day);

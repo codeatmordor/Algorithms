@@ -1,18 +1,19 @@
+package org.gks.problems;
+
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-class Result {
+/*class Result {
 
-    /*
+
      * Complete the 'findDay' function below.
      *
      * The function is expected to return a STRING. The function accepts
      * following parameters: 1. INTEGER month 2. INTEGER day 3. INTEGER year
-     */
+
 
     static String[] days = new String[] { "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY" };
 
@@ -24,7 +25,7 @@ class Result {
         return days[dayOfWeek - 1];
     }
 
-}
+}*/
 
 class Student {
     private int id;
@@ -43,10 +44,7 @@ class Student {
     }
 
     public String getFname() {
-        Calendar c = Calendar.getInstance();
-        c.set(year, month, date);
-        // c.setTime(yourDate);
-        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        return fname;
     }
 
     public double getCgpa() {

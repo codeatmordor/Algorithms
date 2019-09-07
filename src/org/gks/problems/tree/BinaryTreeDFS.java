@@ -5,15 +5,15 @@ package org.gks.problems.tree;
 import java.util.ArrayList;
 import java.util.List;
 
-class TreeNode {
+class TNode {
     int val;
-    TreeNode left;
-    TreeNode right;
+    TNode left;
+    TNode right;
 
     /**
      * @param val
      */
-    public TreeNode(int val) {
+    public TNode(int val) {
         super();
         this.val = val;
     }
@@ -21,7 +21,7 @@ class TreeNode {
 
 public class BinaryTreeDFS {
 
-    public static void findRootToLeafPathNumber(TreeNode curr, int pathSum, List<Integer> res) {
+    public static void findRootToLeafPathNumber(TNode curr, int pathSum, List<Integer> res) {
         if (curr == null)
             return;
 
@@ -36,14 +36,14 @@ public class BinaryTreeDFS {
 
     }
 
-    public static boolean findPath(TreeNode root, int[] sequence) {
+    public static boolean findPath(TNode root, int[] sequence) {
         if (root == null)
             return sequence.length == 0;
 
         return findPathRecursive(root, sequence, 0);
     }
 
-    private static boolean findPathRecursive(TreeNode currentNode, int[] sequence, int sequenceIndex) {
+    private static boolean findPathRecursive(TNode currentNode, int[] sequence, int sequenceIndex) {
 
         if (currentNode == null)
             return false;
@@ -62,14 +62,14 @@ public class BinaryTreeDFS {
     }
 
     public static void main(String[] args) {
-        TreeNode r = new TreeNode(5);
-        r.left = new TreeNode(6);
-        r.right = new TreeNode(7);
-        r.left.left = new TreeNode(8);
-        r.left.right = new TreeNode(9);
-        r.right.left = new TreeNode(10);
-        r.right.right = new TreeNode(11);
-        r.left.left.left = new TreeNode(12);
+        TNode r = new TNode(5);
+        r.left = new TNode(6);
+        r.right = new TNode(7);
+        r.left.left = new TNode(8);
+        r.left.right = new TNode(9);
+        r.right.left = new TNode(10);
+        r.right.right = new TNode(11);
+        r.left.left.left = new TNode(12);
 
         List<Integer> res = new ArrayList<>();
         BinaryTreeDFS.findRootToLeafPathNumber(r, 0, res);

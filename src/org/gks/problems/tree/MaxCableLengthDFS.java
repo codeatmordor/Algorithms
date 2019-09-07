@@ -26,7 +26,6 @@
 package org.gks.problems.tree;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Gaurav_Singh3
@@ -50,7 +49,7 @@ public class MaxCableLengthDFS {
 
     }
 
-    public static List<Edge> graph[7];
+    public static List<Edge> graph;
 
     public static void main(String[] args) {
 

@@ -12,10 +12,10 @@ class MyMaths {
     }
 
     public static PerformOperation isOdd() {
-        return (int a)->a%2!=0;
+        return (int a) -> a * a;
     }
 
-    public static PerformOperation
+    // public static PerformOperation
 }
 
 public class LambdaExample {
