@@ -38,7 +38,7 @@ class TreeNode {
     }
 }
 
-public class BinaryTreeLevelOrder {
+public class BinaryTreeTraversal {
 
     public static List<List<Integer>> levelOrder(TreeNode r) {
         Queue<TreeNode> q = new LinkedList<>();
@@ -414,7 +414,7 @@ public class BinaryTreeLevelOrder {
         return result;
     }
 
-    BinaryTreeLevelOrder() {
+    BinaryTreeTraversal() {
 
     }
 
@@ -469,7 +469,7 @@ public class BinaryTreeLevelOrder {
 
     public static void main(String[] args) {
         // max = new Maximum();
-        BinaryTreeLevelOrder b = new BinaryTreeLevelOrder();
+        BinaryTreeTraversal b = new BinaryTreeTraversal();
         b.r = new TreeNode(5);
         b.r.left = new TreeNode(6);
         b.r.right = new TreeNode(7);
@@ -479,62 +479,62 @@ public class BinaryTreeLevelOrder {
         b.r.right.right = new TreeNode(11);
 
         newline("levelOrder");
-        BinaryTreeLevelOrder.levelOrder(b.r).stream().forEach(l -> {
+        BinaryTreeTraversal.levelOrder(b.r).stream().forEach(l -> {
             l.stream().forEach(s -> System.out.print(s + " "));
             System.out.println();
         });
 
         newline("reverselevelOrder");
 
-        BinaryTreeLevelOrder.reverselevelOrder(b.r).stream().forEach(l -> {
+        BinaryTreeTraversal.reverselevelOrder(b.r).stream().forEach(l -> {
             l.stream().forEach(s -> System.out.print(s + " "));
             System.out.println();
         });
 
         newline("zigzag");
 
-        BinaryTreeLevelOrder.zigzag(b.r).stream().forEach(l -> {
+        BinaryTreeTraversal.zigzag(b.r).stream().forEach(l -> {
             l.stream().forEach(s -> System.out.print(s + " "));
             System.out.println();
         });
 
         newline("levelAverage");
 
-        BinaryTreeLevelOrder.levelAverage(b.r).stream().forEach(s -> System.out.println(s + " "));
+        BinaryTreeTraversal.levelAverage(b.r).stream().forEach(s -> System.out.println(s + " "));
 
         newline("levelordersuccessor");
 
-        System.out.println(BinaryTreeLevelOrder.levelordersuccessor(b.r, 11));
+        System.out.println(BinaryTreeTraversal.levelordersuccessor(b.r, 11));
 
         newline("connectlevelordersiblings");
 
-        BinaryTreeLevelOrder.connectlevelordersiblings(b.r);
+        BinaryTreeTraversal.connectlevelordersiblings(b.r);
 
         newline("convertalllevelorder");
 
-        BinaryTreeLevelOrder.convertalllevelorder(b.r);
+        BinaryTreeTraversal.convertalllevelorder(b.r);
 
         newline("rightViewOfTree");
 
-        BinaryTreeLevelOrder.rightViewOfTree(b.r).stream().forEach(s -> System.out.print(s.val + " "));
+        BinaryTreeTraversal.rightViewOfTree(b.r).stream().forEach(s -> System.out.print(s.val + " "));
 
         newline("printTreeBoundary");
 
-        BinaryTreeLevelOrder.printTreeBoundary(b.r);
+        BinaryTreeTraversal.printTreeBoundary(b.r);
 
         newline("hasPath");
-        System.out.println(BinaryTreeLevelOrder.hasPath(b.r, 19));
+        System.out.println(BinaryTreeTraversal.hasPath(b.r, 19));
 
         newline("findAllRootToLeafPaths");
 
-        BinaryTreeLevelOrder.findAllRootToLeafPaths(b.r).stream().forEach(l -> {
+        BinaryTreeTraversal.findAllRootToLeafPaths(b.r).stream().forEach(l -> {
             l.stream().forEach(s -> System.out.print(s + " "));
             System.out.println();
         });
 
         newline("maxSumPath");
 
-        System.out.println(BinaryTreeLevelOrder.maxSumPath(b.r));
+        System.out.println(BinaryTreeTraversal.maxSumPath(b.r));
 
     }
 
