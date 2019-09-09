@@ -459,9 +459,6 @@ public class BinaryTreeTraversal {
         printPath(n, targetLeaf);
         return max.max;
     }
-	
-	
-	
 
     TreeNode r;
     static TreeNode targetLeaf;
