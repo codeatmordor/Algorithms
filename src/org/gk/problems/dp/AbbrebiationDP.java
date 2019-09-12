@@ -6,7 +6,7 @@ public class AbbrebiationDP {
 
     static String abbreviation(String a, String b) {
         boolean[][] isValid = new boolean[a.length() + 1][b.length() + 1];
-        // initializing the first raw to all false; ie. if b is
+        // initializing the first raw to all false; i.e. if b is
         // not empty, isValid will always be false
         isValid[0][0] = true;
         // array initialization - if a is non-empty but b is empty,
