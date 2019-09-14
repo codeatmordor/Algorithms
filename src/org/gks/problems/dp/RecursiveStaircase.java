@@ -1,6 +1,6 @@
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gk.problems.dp;
+package org.gks.problems.dp;
 
 // https://www.youtube.com/watch?v=5o-kdjv7FD0&list=PLBZBJbE_rGRVnpitdvpdY9952IsKMDuev&index=2
 public class RecursiveStaircase {

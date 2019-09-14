@@ -1,6 +1,6 @@
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gk.unittesting;
+package org.gks.unittesting;
 
 public class NetworkDao {
 

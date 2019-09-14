@@ -1,6 +1,6 @@
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gk.problems.dp;
+package org.gks.problems.dp;
 
 import java.util.Arrays;
 

@@ -1,6 +1,6 @@
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gk.problems.heap;
+package org.gks.problems.heap;
 
 import java.util.HashMap;
 import java.util.Map;

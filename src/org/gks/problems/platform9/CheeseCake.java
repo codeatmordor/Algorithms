@@ -1,6 +1,6 @@
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gk.problems.platform9;
+package org.gks.problems.platform9;
 
 import java.io.BufferedReader;
 import java.io.IOException;

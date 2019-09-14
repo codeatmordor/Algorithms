@@ -1,6 +1,6 @@
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gk.most_asked.problems;
+package org.gks.most_asked.problems;
 
 import java.util.LinkedList;
 import java.util.Queue;

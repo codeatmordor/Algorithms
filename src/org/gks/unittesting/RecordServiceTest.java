@@ -1,4 +1,4 @@
-package org.gk.unittesting;
+package org.gks.unittesting;
 
 import org.junit.runner.RunWith;
 

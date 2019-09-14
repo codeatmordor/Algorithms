@@ -1,6 +1,6 @@
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gk.problems.greedy;
+package org.gks.problems.greedy;
 
 public class FittingShelves {
 
