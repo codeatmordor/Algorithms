@@ -1,3 +1,4 @@
+package org.gks.problems.dp;
 /** SYMANTEC: Copyright 2019 Symantec Corporation. All rights reserved.
  * THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION AND TRADE SECRETS OF
  * SYMANTEC CORPORATION.USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED
@@ -26,7 +27,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class Subsets {
+class AllSubsetsIterative {
 
     public static List<List<Integer>> findSubsets(final int[] nums) {
         final List<List<Integer>> subsets = new ArrayList<>();
@@ -48,10 +49,10 @@ class Subsets {
     }
 
     public static void main(final String[] args) {
-        List<List<Integer>> result = Subsets.findSubsets(new int[] { 1, 3 });
+        List<List<Integer>> result = AllSubsetsIterative.findSubsets(new int[] { 1, 3 });
         System.out.println("Here is the list of subsets: " + result);
 
-        result = Subsets.findSubsets(new int[] { 1, 5, 3 });
+        result = AllSubsetsIterative.findSubsets(new int[] { 1, 5, 3 });
         System.out.println("Here is the list of subsets: " + result);
     }
 }

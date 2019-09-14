@@ -20,7 +20,7 @@ class Pair implements Comparable<Pair> {
     }
 }
 
-public class DateFormater {
+public class SampleCodeDriver {
 
     static List<Integer> freqQuery(List<List<Integer>> queries) {
         HashMap<Integer, Integer> hash = new HashMap<>();
