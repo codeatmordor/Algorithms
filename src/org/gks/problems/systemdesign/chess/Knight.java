@@ -22,5 +22,11 @@ public class Knight extends Piece {
     int y = Math.abs(start.getY() - end.getY());
     return x * y == 2;
   }
+
+  @Override
+  protected boolean isCastlingMove() {
+    // TODO Auto-generated method stub
+    return false;
+  }
 }
 

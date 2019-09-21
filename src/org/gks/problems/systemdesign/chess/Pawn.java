@@ -17,6 +17,12 @@ public class Pawn extends Piece {
     return false;
   }
 
+  @Override
+  protected boolean isCastlingMove() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
 
 
 }
