@@ -80,7 +80,7 @@ public class TopologicalSortAll {
         }
       }
     }
-
+    System.out.println(sorted);
     // topological sort is not possible as the graph has a cycle
     if (sorted.size() != vertices)
       return new ArrayList<>();
@@ -88,8 +88,8 @@ public class TopologicalSortAll {
   }
 
   public static void main(String[] args) {
-    List<Integer> gr = TopologicalSortAll.sort(4,
-        new int[][] {new int[] {3, 2}, new int[] {3, 0}, new int[] {2, 0}, new int[] {2, 1}});
+    List<Integer> gr = TopologicalSortAll.sort(4, new int[][] {new int[] {3, 2}, new int[] {3, 0},
+        new int[] {2, 0}, new int[] {2, 1}, new int[] {1, 0}, new int[] {0, 2}});
 
     System.out.println(gr);
 
