@@ -71,10 +71,10 @@ public class CoinChange {
     int val = 400;
     Calls calls1 = new Calls();
     System.out.println(minCoinRecur(coins, val, calls1));
-    System.out.println(calls1.count);
+    System.out.println(calls1.count);// 412,953,506,808 Calls for 400
     calls1.count = 0;
     System.out.println(minCoinDP(coins, val, calls1));
-    System.out.println(calls1.count);
+    System.out.println(calls1.count);// 77 Calls for 400
 
   }
 }
