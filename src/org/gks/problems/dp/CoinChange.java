@@ -67,8 +67,8 @@ public class CoinChange {
 
 
   public static void main(String[] args) {
-    int[] coins = new int[] {10, 20, 25, 50};
-    int val = 400;
+    int[] coins = new int[] {1, 2, 25, 50};
+    int val = 300;
     Calls calls1 = new Calls();
     System.out.println(minCoinRecur(coins, val, calls1));
     System.out.println(calls1.count);// 412,953,506,808 Calls for 400
