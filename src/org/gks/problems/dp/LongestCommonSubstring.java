@@ -13,9 +13,9 @@
  * with the terms of this Agreement.
  */
 /********************************************************************
- * File Name:    EditDistance.java
+ * File Name:    LongestCommonSubstring.java
  *
- * Date Created: Jul 13, 2019
+ * Date Created: Aug 18, 2019
  *
  * ------------------------------------------------------------------
  * Copyright (C) 2019 Symantec Ltd. All Rights Reserved.
@@ -23,39 +23,40 @@
  *******************************************************************/
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gks.problems.misc;
+package org.gks.problems.dp;
 
 /**
  * @author Gaurav_Singh3
  *
  */
-public class EditDistance {
+public class LongestCommonSubstring {
 
-    public static void main(final String args[]) {
-        final String str1 = "abc";
-        final String str2 = "xyz";
+    public static String getLcs(String a, String b) {
+        String res = "";
+        if (a.length() == 0 || b.length() == 0) {
+            return res;
+        }
+        int[][] dp = new int[a.length()][b.length()];
 
-        System.out.println(editDistRec(str1, str2, str1.length(), str2.length()));
+        for (int i = 0; i < a.length(); i++) {
+            for (int j = 0; j < b.length(); j++) {
+                if (a.charAt(i) == b.charAt(j)) {
+                    if (i == 0 || j == 0) {
+                        dp[i][j] = 1;
+                    } else {
+                        dp[i][j] = dp[i - 1][j - 1] + 1;
+                    }
+                    if (dp[i][j] > res.length()) {
+                        res = a.substring(i - dp[i][j] + 1, i + 1);
+                    }
+                }
+            }
+        }
+        return res;
     }
 
-    public static int min(final int x, final int y, final int z) {
-        if (x <= y && x <= z)
-            return x;
-        else if (y <= x && y <= z)
-            return y;
-        else
-            return z;
+    public static void main(String[] args) {
+        System.out.println(getLcs("abab", "baba"));
     }
 
-    public static int editDistRec(final String str1, final String str2, final int m, final int n) {
-        if (m == 0)
-            return n;
-        if (n == 0)
-            return m;
-
-        if (str1.charAt(m - 1) == str2.charAt(n - 1))
-            return editDistRec(str1, str2, m - 1, n - 1);
-
-        return 1 + min(editDistRec(str1, str2, m - 1, n), editDistRec(str1, str2, m, n - 1), editDistRec(str1, str2, m - 1, n - 1));
-    }
 }

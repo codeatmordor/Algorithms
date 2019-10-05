@@ -13,9 +13,9 @@
  * with the terms of this Agreement.
  */
 /********************************************************************
- * File Name:    RemoveDuplicates.java
+ * File Name:    SlidingWindowFindAverage.java
  *
- * Date Created: Aug 16, 2019
+ * Date Created: Jul 6, 2019
  *
  * ------------------------------------------------------------------
  * Copyright (C) 2019 Symantec Ltd. All Rights Reserved.
@@ -23,34 +23,31 @@
  *******************************************************************/
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gks.problems.misc;
+package org.gks.problems.slidingwindow;
 
-/**
- * @author Gaurav_Singh3
- *
- */
-public class RemoveDuplicates {
+import java.util.Arrays;
 
-    public static void main(final String[] args) {
-        int[] arr = new int[] { 2, 3, 3, 3, 6, 9, 9 };
-        System.out.println(RemoveDuplicates.remove(arr));
-
-        arr = new int[] { 2, 2, 2, 11 };
-        System.out.println(RemoveDuplicates.remove(arr));
-    }
-
-    public static int remove(final int[] arr) {
-
-        int j = 1;
-        int nextnondup = 1;
-
-        for (j = 1; j < arr.length; j++) {
-            if (arr[nextnondup - 1] != arr[j]) {
-                arr[nextnondup] = arr[j];
-                nextnondup++;
+public class SlidingWindowAverageOfSubarrayOfSizeK {
+    public static double[] findAverages(final int K, final int[] arr) {
+        final double[] result = new double[arr.length - K + 1];
+        double windowSum = 0;
+        int windowStart = 0;
+        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
+            windowSum += arr[windowEnd]; // add the next element
+            // slide the window, we don't need to slide if we've not hit the
+            // required window size of 'k'
+            if (windowEnd >= K - 1) {
+                result[windowStart] = windowSum / K; // calculate the average
+                windowSum -= arr[windowStart]; // subtract the element going out
+                windowStart++; // slide the window ahead
             }
         }
-        return nextnondup;
+
+        return result;
     }
 
+    public static void main(final String[] args) {
+        final double[] result = SlidingWindowAverageOfSubarrayOfSizeK.findAverages(5, new int[] { 1, 3, 2, 6, -1, 4, 1, 8, 2 });
+        System.out.println("Averages of subarrays of size K: " + Arrays.toString(result));
+    }
 }

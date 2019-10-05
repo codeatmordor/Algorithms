@@ -13,9 +13,9 @@
  * with the terms of this Agreement.
  */
 /********************************************************************
- * File Name:    LongestCommonSubstring.java
+ * File Name:    RemoveDuplicates.java
  *
- * Date Created: Aug 18, 2019
+ * Date Created: Aug 16, 2019
  *
  * ------------------------------------------------------------------
  * Copyright (C) 2019 Symantec Ltd. All Rights Reserved.
@@ -23,40 +23,34 @@
  *******************************************************************/
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gks.problems.misc;
+package org.gks.problems.twopointers;
 
 /**
  * @author Gaurav_Singh3
  *
  */
-public class LongestCommonSubstring {
+public class RemoveDuplicates {
 
-    public static String getLcs(String a, String b) {
-        String res = "";
-        if (a.length() == 0 || b.length() == 0) {
-            return res;
-        }
-        int[][] dp = new int[a.length()][b.length()];
+    public static void main(final String[] args) {
+        int[] arr = new int[] { 2, 3, 3, 3, 6, 9, 9 };
+        System.out.println(RemoveDuplicates.remove(arr));
 
-        for (int i = 0; i < a.length(); i++) {
-            for (int j = 0; j < b.length(); j++) {
-                if (a.charAt(i) == b.charAt(j)) {
-                    if (i == 0 || j == 0) {
-                        dp[i][j] = 1;
-                    } else {
-                        dp[i][j] = dp[i - 1][j - 1] + 1;
-                    }
-                    if (dp[i][j] > res.length()) {
-                        res = a.substring(i - dp[i][j] + 1, i + 1);
-                    }
-                }
-            }
-        }
-        return res;
+        arr = new int[] { 2, 2, 2, 11 };
+        System.out.println(RemoveDuplicates.remove(arr));
     }
 
-    public static void main(String[] args) {
-        System.out.println(getLcs("abab", "baba"));
+    public static int remove(final int[] arr) {
+
+        int j = 1;
+        int nextnondup = 1;
+
+        for (j = 1; j < arr.length; j++) {
+            if (arr[nextnondup - 1] != arr[j]) {
+                arr[nextnondup] = arr[j];
+                nextnondup++;
+            }
+        }
+        return nextnondup;
     }
 
 }

@@ -13,9 +13,9 @@
  * with the terms of this Agreement.
  */
 /********************************************************************
- * File Name:    SlidingWindowFindAverage.java
+ * File Name:    EditDistance.java
  *
- * Date Created: Jul 6, 2019
+ * Date Created: Jul 13, 2019
  *
  * ------------------------------------------------------------------
  * Copyright (C) 2019 Symantec Ltd. All Rights Reserved.
@@ -23,31 +23,39 @@
  *******************************************************************/
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gks.problems.misc;
+package org.gks.problems.dp;
 
-import java.util.Arrays;
+/**
+ * @author Gaurav_Singh3
+ *
+ */
+public class EditDistance {
 
-public class SlidingWindowAverageOfSubarrayOfSizeK {
-    public static double[] findAverages(final int K, final int[] arr) {
-        final double[] result = new double[arr.length - K + 1];
-        double windowSum = 0;
-        int windowStart = 0;
-        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
-            windowSum += arr[windowEnd]; // add the next element
-            // slide the window, we don't need to slide if we've not hit the
-            // required window size of 'k'
-            if (windowEnd >= K - 1) {
-                result[windowStart] = windowSum / K; // calculate the average
-                windowSum -= arr[windowStart]; // subtract the element going out
-                windowStart++; // slide the window ahead
-            }
-        }
+    public static void main(final String args[]) {
+        final String str1 = "abc";
+        final String str2 = "xyz";
 
-        return result;
+        System.out.println(editDistRec(str1, str2, str1.length(), str2.length()));
     }
 
-    public static void main(final String[] args) {
-        final double[] result = SlidingWindowAverageOfSubarrayOfSizeK.findAverages(5, new int[] { 1, 3, 2, 6, -1, 4, 1, 8, 2 });
-        System.out.println("Averages of subarrays of size K: " + Arrays.toString(result));
+    public static int min(final int x, final int y, final int z) {
+        if (x <= y && x <= z)
+            return x;
+        else if (y <= x && y <= z)
+            return y;
+        else
+            return z;
+    }
+
+    public static int editDistRec(final String str1, final String str2, final int m, final int n) {
+        if (m == 0)
+            return n;
+        if (n == 0)
+            return m;
+
+        if (str1.charAt(m - 1) == str2.charAt(n - 1))
+            return editDistRec(str1, str2, m - 1, n - 1);
+
+        return 1 + min(editDistRec(str1, str2, m - 1, n), editDistRec(str1, str2, m, n - 1), editDistRec(str1, str2, m - 1, n - 1));
     }
 }

@@ -29,7 +29,7 @@
  *
  */
 
-package org.gks.problems.misc;
+package org.gks.problems.dp;
 
 import java.util.HashMap;
 

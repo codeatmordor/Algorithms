@@ -13,9 +13,9 @@
  * with the terms of this Agreement.
  */
 /********************************************************************
- * File Name:    FruitsInBasket.java
+ * File Name:    LongestSubstrWithKDistinctChar.java
  *
- * Date Created: Aug 16, 2019
+ * Date Created: Aug 17, 2019
  *
  * ------------------------------------------------------------------
  * Copyright (C) 2019 Symantec Ltd. All Rights Reserved.
@@ -23,7 +23,7 @@
  *******************************************************************/
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gks.problems.misc;
+package org.gks.problems.slidingwindow;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,42 +32,39 @@ import java.util.Map;
  * @author Gaurav_Singh3
  *
  */
+public class LongestSubstrWithKDistinctChar {
 
-/*
- * Given an array of characters where each character represents a fruit tree,
- * you are given two baskets and your goal is to put maximum number of fruits in
- * each basket. The only restriction is that each basket can have only one type
- * of fruit.
- * 
- * You can start with any tree, but once you have started you can’t skip a tree.
- * You will pick one fruit from each tree until you cannot, i.e., you will stop
- * when you have to pick from a third fruit type.
- * 
- * Write a function to return the maximum number of fruits in both the baskets.
- */
-public class FruitsInBasket {
+    public static int findLength(final String str, final int k) {
+        if (str == null || str.length() == 0 || str.length() < k) {
+            throw new IllegalArgumentException();
+        }
 
-    public static int findLength(final char[] arr) {
         int start = 0;
-        int maxLength = 0;
-        final Map<Character, Integer> fmap = new HashMap<>();
-        for (int end = 0; end < arr.length; end++) {
-            fmap.put(arr[end], fmap.getOrDefault(arr[end], 0) + 1);
-            while (fmap.size() > 2) {
-                fmap.put(arr[start], fmap.get(arr[start]) - 1);
-                if (fmap.get(arr[start]) == 0) {
-                    fmap.remove(arr[start]);
+        int end = 0;
+        int length = 0;
+        final Map<Character, Integer> mf = new HashMap<>();
+
+        for (end = 0; end < str.length(); end++) {
+            final Character c = str.charAt(end);
+            mf.put(c, mf.getOrDefault(c, 0) + 1);
+            if (mf.size() > k) {
+                final Character rc = str.charAt(start);
+                mf.put(rc, mf.get(rc) - 1);
+                if (mf.get(rc) == 0) {
+                    mf.remove(rc);
                 }
                 start++;
             }
-            maxLength = Math.max(maxLength, end - start + 1);
+            length = Math.max(length, end - start + 1);
         }
-        return maxLength;
+        return length;
+
     }
 
     public static void main(final String[] args) {
-        System.out.println("Maximum number of fruits: " + FruitsInBasket.findLength(new char[] { 'A', 'B', 'C', 'A', 'C', 'A', 'C' }));
-        System.out.println("Maximum number of fruits: " + FruitsInBasket.findLength(new char[] { 'A', 'B', 'C', 'B', 'B', 'C' }));
+        System.out.println("Length of the longest substring: " + LongestSubstrWithKDistinctChar.findLength("araaci", 2));
+        System.out.println("Length of the longest substring: " + LongestSubstrWithKDistinctChar.findLength("araaci", 1));
+        System.out.println("Length of the longest substring: " + LongestSubstrWithKDistinctChar.findLength("cbbebi", 3));
     }
 
 }

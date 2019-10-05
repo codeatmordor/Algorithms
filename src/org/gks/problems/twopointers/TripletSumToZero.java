@@ -1,4 +1,4 @@
-package org.gks.problems.misc;
+package org.gks.problems.twopointers;
 
 import java.util.ArrayList;
 import java.util.Arrays;

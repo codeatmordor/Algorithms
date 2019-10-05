@@ -23,7 +23,7 @@
  *******************************************************************/
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gks.problems.misc;
+package org.gks.problems.twopointers;
 
 import java.util.HashMap;
 import java.util.Map;

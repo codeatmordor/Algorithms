@@ -1,6 +1,6 @@
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gks.problems.string;
+package org.gks.problems.dp;
 
 public class LongestPalindromDPSolution {
 
