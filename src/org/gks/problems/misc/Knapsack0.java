@@ -12,7 +12,7 @@ public class Knapsack0 {
     }
   }
 
-  public static int topDownKnapSack(Item[] items, int maxW) {
+  public static int recursiveKnapSack(Item[] items, int maxW) {
     return knapSack(items, maxW, 0);
   }
 
@@ -59,7 +59,7 @@ public class Knapsack0 {
     items[2] = new Item(3, 20);
 
     System.out.println("Bottom-Up Version Result " + bottomUpKnapsack(items, 5));
-    System.out.println("Top-Down Version Result " + topDownKnapSack(items, 5));
+    System.out.println("Recursive Version Result " + recursiveKnapSack(items, 5));
 
   }
 
