@@ -1,6 +1,6 @@
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gks.problems.platform9;
+package org.gks.problems.dp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheeseCake {
+public class CheeseCakePlatfrom9 {
 
     public static int maxCheese(Integer[] cheesArr) {
         int[] cheeseCache = new int[cheesArr.length];
@@ -43,7 +43,7 @@ public class CheeseCake {
             }
             for (int i = 0; i < cheeses.size(); i++) {
                 List<Integer> in = cheeses.get(i);
-                System.out.println(CheeseCake.maxCheese(in.toArray(new Integer[in.size()])));
+                System.out.println(CheeseCakePlatfrom9.maxCheese(in.toArray(new Integer[in.size()])));
             }
         } catch (IOException e) {
             System.out.println("Invalid Input Fromat. " + e.getMessage());
