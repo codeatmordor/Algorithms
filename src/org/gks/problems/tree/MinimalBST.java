@@ -33,10 +33,25 @@ public class MinimalBST {
     display(n.right);
   }
 
+  public static boolean validateBST(Node n) {
+    return isBST(n, Integer.MIN_VALUE, Integer.MAX_VALUE);
+  }
+
+  private static boolean isBST(Node n, Integer min, Integer max) {
+    if (n == null)
+      return true;
+
+    if (n.data < min || n.data > max)
+      return false;
+
+    return (isBST(n.left, min, n.data - 1) && isBST(n.right, n.data + 1, max));
+  }
+
   public static void main(String[] args) {
     int[] input = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     createMinimalBST(input);
     display(root);
+    System.out.println(validateBST(root));
   }
 
 }
