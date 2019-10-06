@@ -47,6 +47,8 @@ public class MinimalBST {
     return (isBST(n.left, min, n.data - 1) && isBST(n.right, n.data + 1, max));
   }
 
+
+
   public static void main(String[] args) {
     int[] input = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     createMinimalBST(input);
