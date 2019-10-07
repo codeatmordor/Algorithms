@@ -1,0 +1,20 @@
+How would you design the data structures for a very large social network like
+Facebook or Linkedln? Describe how you would design an algorithm to show the shortest path
+between two people (e.g., Me -> Bob -> Susan -> Jason -> You).
+
+
+
+
+Solution Approach :
+
+We can construct a graph by treating each person as a node and letting an edge between two nodes indicate
+that the two users are friends.
+If I wanted to find the path between two people, I could start with one person and do a simple breadth-first
+search.
+Why wouldn't a depth-first search work well? First, depth-first search would just find a path. It wouldn't
+necessarily find the shortest path. Second, even if we just needed any path, it would be very inefficient. Two
+users might be only one degree of separation apart, but I could search millions of nodes in their "subtrees"
+before finding this relatively immediate connection.
+Alternatively, I could do what's called a bidirectional breadth-first search. This means doing two breadthfirst
+searches, one from the source and one from the destination. When the searches collide, we know we've
+found a path.
