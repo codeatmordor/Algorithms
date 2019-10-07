@@ -4,154 +4,172 @@ package org.gks.problems.tree;
 
 public class BinarySearchTree {
 
-    static Node root;
+  static Node root;
 
-    public BinarySearchTree() {
-        root = null;
+  public BinarySearchTree() {
+    root = null;
+  }
+
+  void insert(int k) {
+    root = insertRec(root, k);
+  }
+
+  int getHeight(Node root) {
+    if (root == null)
+      return -1;
+    return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+  }
+
+  boolean isBalanced(Node root) {
+    if (root == null)
+      return true;
+
+    int heightDiff = getHeight(root.left) - getHeight(root.right);
+    if (Math.abs(heightDiff) > 1)
+      return false;
+    else {
+      return isBalanced(root.left) && isBalanced(root.right);
+    }
+  }
+
+  Node insertRec(Node root, int k) {
+    if (root == null) {
+      root = new Node(k);
+      return root;
     }
 
-    void insert(int k) {
-        root = insertRec(root, k);
+    if (k < root.data) {
+      if (root.left != null)
+        System.out.println("Left : " + root.left.data);
+      root.left = insertRec(root.left, k);
+    } else if (k > root.data) {
+      if (root.right != null)
+        System.out.println("Right : " + root.right.data);
+      root.right = insertRec(root.right, k);
     }
 
-    Node insertRec(Node root, int k) {
-        if (root == null) {
-            root = new Node(k);
-            return root;
-        }
+    return root;
+  }
 
-        if (k < root.data) {
-            if (root.left != null)
-                System.out.println("Left : " + root.left.data);
-            root.left = insertRec(root.left, k);
-        } else if (k > root.data) {
-            if (root.right != null)
-                System.out.println("Right : " + root.right.data);
-            root.right = insertRec(root.right, k);
-        }
+  void deleteKey(int key) {
+    root = deleteRec(root, key);
+  }
 
-        return root;
+  Node deleteRec(Node root, int k) {
+    if (root == null)
+      return null;
+
+    if (k < root.data)
+      root.left = deleteRec(root.left, k);
+    else if (k > root.data)
+      root.right = deleteRec(root.right, k);
+    else {
+      if (root.left == null)
+        return root.right;
+      else if (root.right == null)
+        return root.left;
+
+      // node with two children: Get the inorder successor (smallest
+      // in the right subtree)
+      root.data = minValue(root.right);
+
+      // Delete the inorder successor
+      root.right = deleteRec(root.right, root.data);
     }
+    return root;
+  }
 
-    void deleteKey(int key) {
-        root = deleteRec(root, key);
+  int minValue(Node root) {
+    int minv = root.data;
+    while (root.left != null) {
+      minv = root.left.data;
+      root = root.left;
     }
+    return minv;
+  }
 
-    Node deleteRec(Node root, int k) {
-        if (root == null)
-            return null;
+  void inorder() {
+    inorderRec(root);
+  }
 
-        if (k < root.data)
-            root.left = deleteRec(root.left, k);
-        else if (k > root.data)
-            root.right = deleteRec(root.right, k);
-        else {
-            if (root.left == null)
-                return root.right;
-            else if (root.right == null)
-                return root.left;
-
-            // node with two children: Get the inorder successor (smallest
-            // in the right subtree)
-            root.data = minValue(root.right);
-
-            // Delete the inorder successor
-            root.right = deleteRec(root.right, root.data);
-        }
-        return root;
+  // A utility function to do inorder traversal of BST
+  void inorderRec(Node root) {
+    if (root != null) {
+      inorderRec(root.left);
+      System.out.println(root.data);
+      inorderRec(root.right);
     }
+  }
 
-    int minValue(Node root) {
-        int minv = root.data;
-        while (root.left != null) {
-            minv = root.left.data;
-            root = root.left;
-        }
-        return minv;
-    }
+  static Node lca(Node node, int n1, int n2) {
+    if (node == null)
+      return null;
 
-    void inorder() {
-        inorderRec(root);
-    }
+    // If both n1 and n2 are smaller than root, then LCA lies in left
+    if (node.data > n1 && node.data > n2)
+      return lca(node.left, n1, n2);
 
-    // A utility function to do inorder traversal of BST
-    void inorderRec(Node root) {
-        if (root != null) {
-            inorderRec(root.left);
-            System.out.println(root.data);
-            inorderRec(root.right);
-        }
-    }
+    // If both n1 and n2 are greater than root, then LCA lies in right
+    if (node.data < n1 && node.data < n2)
+      return lca(node.right, n1, n2);
 
-    static Node lca(Node node, int n1, int n2) {
-        if (node == null)
-            return null;
+    return node;
+  }
 
-        // If both n1 and n2 are smaller than root, then LCA lies in left
-        if (node.data > n1 && node.data > n2)
-            return lca(node.left, n1, n2);
+  public static void main(String[] args) {
+    BinarySearchTree tree = new BinarySearchTree();
 
-        // If both n1 and n2 are greater than root, then LCA lies in right
-        if (node.data < n1 && node.data < n2)
-            return lca(node.right, n1, n2);
+    /*
+     * Let us create following BST 50 / \ 30 70 / \ / \ 20 40 60 80
+     */
+    tree.insert(50);
+    tree.insert(30);
+    tree.insert(20);
+    tree.insert(40);
+    tree.insert(70);
+    tree.insert(60);
+    tree.insert(80);
 
-        return node;
-    }
+    // print inorder traversal of the BST
+    tree.inorder();
 
-    public static void main(String[] args) {
-        BinarySearchTree tree = new BinarySearchTree();
+    System.out.println("\nDelete 20");
+    tree.deleteKey(20);
+    System.out.println("Inorder traversal of the modified tree");
+    tree.inorder();
 
-        /*
-         * Let us create following BST 50 / \ 30 70 / \ / \ 20 40 60 80
-         */
-        tree.insert(50);
-        tree.insert(30);
-        tree.insert(20);
-        tree.insert(40);
-        tree.insert(70);
-        tree.insert(60);
-        tree.insert(80);
+    System.out.println("\nDelete 30");
+    tree.deleteKey(30);
+    System.out.println("Inorder traversal of the modified tree");
+    tree.inorder();
 
-        // print inorder traversal of the BST
-        tree.inorder();
+    System.out.println("\nDelete 50");
+    tree.deleteKey(50);
+    System.out.println("Inorder traversal of the modified tree");
+    tree.inorder();
 
-        System.out.println("\nDelete 20");
-        tree.deleteKey(20);
-        System.out.println("Inorder traversal of the modified tree");
-        tree.inorder();
+    BinarySearchTree t1 = new BinarySearchTree();
+    t1.root = new Node(20);
+    t1.root.left = new Node(8);
+    t1.root.right = new Node(22);
+    t1.root.left.left = new Node(4);
+    t1.root.left.right = new Node(12);
+    t1.root.left.right.left = new Node(10);
+    t1.root.left.right.right = new Node(14);
 
-        System.out.println("\nDelete 30");
-        tree.deleteKey(30);
-        System.out.println("Inorder traversal of the modified tree");
-        tree.inorder();
+    int n1 = 10, n2 = 14;
+    Node t = t1.lca(t1.root, n1, n2);
+    System.out.println("LCA of " + n1 + " and " + n2 + " is " + t.data);
 
-        System.out.println("\nDelete 50");
-        tree.deleteKey(50);
-        System.out.println("Inorder traversal of the modified tree");
-        tree.inorder();
+    n1 = 14;
+    n2 = 8;
+    t = t1.lca(t1.root, n1, n2);
+    System.out.println("LCA of " + n1 + " and " + n2 + " is " + t.data);
 
-        BinarySearchTree t1 = new BinarySearchTree();
-        t1.root = new Node(20);
-        t1.root.left = new Node(8);
-        t1.root.right = new Node(22);
-        t1.root.left.left = new Node(4);
-        t1.root.left.right = new Node(12);
-        t1.root.left.right.left = new Node(10);
-        t1.root.left.right.right = new Node(14);
-
-        int n1 = 10, n2 = 14;
-        Node t = t1.lca(t1.root, n1, n2);
-        System.out.println("LCA of " + n1 + " and " + n2 + " is " + t.data);
-
-        n1 = 14;
-        n2 = 8;
-        t = t1.lca(t1.root, n1, n2);
-        System.out.println("LCA of " + n1 + " and " + n2 + " is " + t.data);
-
-        n1 = 10;
-        n2 = 22;
-        t = t1.lca(t1.root, n1, n2);
-        System.out.println("LCA of " + n1 + " and " + n2 + " is " + t.data);
-    }
+    n1 = 10;
+    n2 = 22;
+    t = t1.lca(t1.root, n1, n2);
+    System.out.println("LCA of " + n1 + " and " + n2 + " is " + t.data);
+  }
 
 }
