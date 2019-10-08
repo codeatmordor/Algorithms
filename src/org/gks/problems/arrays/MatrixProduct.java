@@ -1,4 +1,4 @@
-package org.gks.problems.misc;
+package org.gks.problems.arrays;
 
 import java.util.Arrays;
 
