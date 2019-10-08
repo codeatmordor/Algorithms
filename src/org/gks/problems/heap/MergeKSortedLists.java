@@ -1,6 +1,3 @@
-
-
-// PACKAGE/IMPORTS --------------------------------------------------
 package org.gks.problems.heap;
 
 import java.util.PriorityQueue;
@@ -18,8 +15,6 @@ class ListNode {
     this.val = val;
     this.next = null;
   }
-
-
 }
 
 
@@ -53,8 +48,6 @@ public class MergeKSortedLists {
   }
 
   public static void main(String[] args) {
-
-
     ListNode l1 = new ListNode(2);
     l1.next = new ListNode(6);
     l1.next.next = new ListNode(8);
@@ -74,7 +67,5 @@ public class MergeKSortedLists {
       result = result.next;
     }
   }
-
-
 }
 

@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 
+
+
 class Node {
-  int elementIndex;
-  int arrayIndex;
+  public int elementIndex;
+  public int arrayIndex;
 
   Node(int elementIndex, int arrayIndex) {
     this.elementIndex = elementIndex;
