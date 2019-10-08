@@ -2,22 +2,6 @@ package org.gks.problems.heap;
 
 import java.util.PriorityQueue;
 
-class ListNode {
-  public int val;
-  public ListNode next;
-
-  /**
-   * @param val
-   * @param next
-   */
-  public ListNode(int val) {
-    super();
-    this.val = val;
-    this.next = null;
-  }
-}
-
-
 public class MergeKSortedLists {
 
   public static ListNode merge(ListNode[] lists) {
