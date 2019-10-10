@@ -1,4 +1,3 @@
-
 package org.gks.problems.slidingwindow;
 
 import java.util.HashMap;
