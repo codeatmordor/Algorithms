@@ -1,6 +1,3 @@
-
-
-// PACKAGE/IMPORTS --------------------------------------------------
 package org.gks.problems.arrays;
 
 
