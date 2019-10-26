@@ -1,8 +1,13 @@
 // PACKAGE/IMPORTS --------------------------------------------------
 package org.gks.problems.heap;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
 
+/*
+ * Given a string, sort it based on the decreasing frequency of its characters.
+ */
 public class FrequencySort {
 
   public static String sortCharacterByFrequency(String str) {
@@ -12,8 +17,8 @@ public class FrequencySort {
       characterFrequencyMap.put(chr, characterFrequencyMap.getOrDefault(chr, 0) + 1);
     }
 
-    PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<Map.Entry<Character, Integer>>(
-        (e1, e2) -> e2.getValue() - e1.getValue());
+    PriorityQueue<Map.Entry<Character, Integer>> maxHeap =
+        new PriorityQueue<>((e1, e2) -> e2.getValue() - e1.getValue());
 
     // add all characters to the max heap
     maxHeap.addAll(characterFrequencyMap.entrySet());
