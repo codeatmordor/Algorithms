@@ -1,6 +1,6 @@
 
 // PACKAGE/IMPORTS --------------------------------------------------
-package org.gks.problems.median;
+package org.gks.problems.twoheaps;
 
 import java.util.PriorityQueue;
 
