@@ -1,4 +1,4 @@
-package org.gks.problems.arrays;
+package org.gks.problems.dp;
 
 
 public class LongestIncreasingSubsequence {

@@ -29,8 +29,12 @@ public class MinJumpsToreachEnd {
   }
 
   public static void main(String[] args) {
+
     int[] input = {1, 3, 6, 1, 0, 9};
     System.out.println(minjumps(input));
+
   }
+
+
 }
 
