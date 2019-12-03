@@ -3,7 +3,6 @@
 package org.gks.problems.string;
 
 public class Sandwich {
-// Sample Program
     public static String findSandwich(String str) {
         if (str.length() < 5)
             return "";
