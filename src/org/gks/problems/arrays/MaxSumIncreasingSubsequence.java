@@ -6,9 +6,9 @@ public class MaxSumIncreasingSubsequence {
   /*
    * maxSumIS() returns the maximum sum of increasing subsequence in arr[] of size n
    */
-  static int maxSumIS(int arr[], int n) {
+  private static int maxSumIS(int[] arr, int n) {
     int i, j, max = 0;
-    int msis[] = new int[n];
+    int[] msis = new int[n];
 
     /*
      * Initialize msis values for all indexes
@@ -36,7 +36,7 @@ public class MaxSumIncreasingSubsequence {
   }
 
   public static void main(String[] args) {
-    int arr[] = {1, 101, 2, 3, 100, 4, 5};
+    int[] arr = {1, 101, 2, 3, 100, 4, 5};
     int n = arr.length;
     System.out.println("Length of lis is " + maxSumIS(arr, n) + "\n");
   }

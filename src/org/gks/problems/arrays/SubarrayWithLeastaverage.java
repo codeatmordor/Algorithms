@@ -4,7 +4,7 @@ package org.gks.problems.arrays;
 public class SubarrayWithLeastaverage {
 
 
-  public static void leastaveragesybarray(int[] input, int k) {
+  private static void leastaveragesybarray(int[] input, int k) {
     int end = 0;
     int start = 0;
     double avg = Double.MAX_VALUE;

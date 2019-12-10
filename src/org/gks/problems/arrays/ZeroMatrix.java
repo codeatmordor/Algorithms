@@ -3,6 +3,8 @@
 // PACKAGE/IMPORTS --------------------------------------------------
 package org.gks.problems.arrays;
 
+import java.util.Arrays;
+
 // how to update a boolean matrix so that if any cell is true, all the cells in that row and column
 // are true.
 public class ZeroMatrix {
@@ -13,13 +15,11 @@ public class ZeroMatrix {
       return;
 
     // Determine whether the first row or first column is true
-    boolean rowZero = false, colZero = false;
+    boolean rowZero = false, colZero;
     for (boolean i : matrix[0]) {
       rowZero |= i;
     }
-    for (boolean[] i : matrix) {
-      colZero |= i[0];
-    }
+    colZero = Arrays.stream(matrix).map(i -> i[0]).reduce(false, (a, b) -> a || b);
 
     // For each cell not in the first row/column, if it is true, set the
     // cell in the first row/same column and first column/same row to be
@@ -54,9 +54,7 @@ public class ZeroMatrix {
 
     // Set first row/column to true if necessary
     if (rowZero) {
-      for (int i = 0; i < matrix[0].length; i++) {
-        matrix[0][i] = true;
-      }
+      Arrays.fill(matrix[0], true);
     }
 
     if (colZero) {

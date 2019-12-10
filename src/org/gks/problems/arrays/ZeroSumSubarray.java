@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class ZeroSumSubarray {
 
-  public static int[] zeroSum(int[] input) {
+  private static int[] zeroSum(int[] input) {
     HashMap<Integer, Integer> sumMp = new HashMap<>();
     int sum = 0;
 
@@ -30,6 +30,7 @@ public class ZeroSumSubarray {
     int[] input = new int[] {1, 2, -5, 1, 2, -1};
     if (zeroSum(input) != null) {
       int[] a = zeroSum(input);
+      assert a != null;
       for (int i : a) {
         System.out.println(i);
       }

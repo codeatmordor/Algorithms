@@ -9,7 +9,7 @@ public class AllSubarrayWithGivenSum {
 
   // Function to find number of subarrays
   // with sum exactly equal to k.
-  static int findSubarraySum(int arr[], int n, int sum) {
+  private static int findSubarraySum(int[] arr, int n, int sum) {
     // HashMap to store number of subarrays
     // starting from index zero having
     // particular value of sum.
@@ -42,11 +42,7 @@ public class AllSubarrayWithGivenSum {
 
       // Add currsum value to count of
       // different values of sum.
-      Integer count = prevSum.get(currsum);
-      if (count == null)
-        prevSum.put(currsum, 1);
-      else
-        prevSum.put(currsum, count + 1);
+      prevSum.merge(currsum, 1, Integer::sum);
     }
 
     return res;
@@ -54,7 +50,7 @@ public class AllSubarrayWithGivenSum {
 
   public static void main(String[] args) {
 
-    int arr[] = {10, 2, -2, -20, 10};
+    int[] arr = {10, 2, -2, -20, 10};
     int sum = -10;
     int n = arr.length;
     System.out.println(findSubarraySum(arr, n, sum));

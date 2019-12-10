@@ -3,7 +3,7 @@ package org.gks.problems.arrays;
 
 
 public class MaxSumSubarray {
-  static void maxSubArraySum(int a[], int size) {
+  private static void maxSubArraySum(int[] a, int size) {
     int max_so_far = Integer.MIN_VALUE, max_ending_here = 0, start = 0, end = 0, s = 0;
 
     for (int i = 0; i < size; i++) {
@@ -27,7 +27,7 @@ public class MaxSumSubarray {
 
   // Driver code
   public static void main(String[] args) {
-    int a[] = {-2, -3, 4, -1, -2, 1, 5, -3};
+    int[] a = {-2, -3, 4, -1, -2, 1, 5, -3};
     int n = a.length;
     maxSubArraySum(a, n);
   }
