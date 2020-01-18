@@ -1,10 +1,8 @@
-package org.gks.problems.designpatters.observer;
+package org.gks.problems.designpatterns.observer;
 
 import java.time.LocalDateTime;
 
 public class PeriodicCron implements Cron{
-	
-	private static final int INTERVAL_SECONDS = 10;
 	
 	private CallBack cb;
 	

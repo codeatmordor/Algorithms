@@ -1,4 +1,4 @@
-package org.gks.problems.designpatters.observer;
+package org.gks.problems.designpatterns.observer;
 
 public class CronJobService {
 	

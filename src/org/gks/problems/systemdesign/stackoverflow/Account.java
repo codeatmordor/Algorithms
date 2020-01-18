@@ -15,6 +15,10 @@ public class Account {
   private String phone;
   private int reputation;
 
+  public Account(String id) {
+    this.id = id;
+  }
+
   public boolean resetPassword();
 
 }
