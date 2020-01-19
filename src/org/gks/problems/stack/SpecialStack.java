@@ -24,17 +24,17 @@ public class SpecialStack extends Stack<Integer> {
 			super.push(x);
 			int y = minSt.pop();
 			minSt.push(y);
-			if (x < y) {
-				minSt.push(x);
-			} else {
-				minSt.push(y);
-			}
+			if( x <= y ) 
+	            minSt.push(x); 
 		}
 	}
 
 	public Integer pop() {
 		int x = super.pop();
-		minSt.pop();
+		int y = minSt.pop();
+		
+		if ( y != x ) 
+	        minSt.push(y); 
 		return x;
 	}
 
