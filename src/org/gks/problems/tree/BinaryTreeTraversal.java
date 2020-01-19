@@ -459,10 +459,41 @@ public class BinaryTreeTraversal {
         printPath(n, targetLeaf);
         return max.max;
     }
+    
+    
+    public  static void BinaryTreeToDLL(TreeNode root) {
+    	if(root == null)
+    		return;
+    	
+    	BinaryTreeToDLL(root.right);
+    	
+    	root.right = head;
+    	
+    	
+    	if(head!=null) {
+    		head.left = root;
+    	}
+    	
+    	head = root;
+    	
+    	BinaryTreeToDLL(root.left);
+    }
+    
+    
+    public static void printList()  
+    { 
+        System.out.println("Extracted Double Linked List is : "); 
+        while (head != null)  
+        { 
+            System.out.print(head.val + " "); 
+            head = head.right; 
+        } 
+    } 
 
     TreeNode r;
     static TreeNode targetLeaf;
     static Maximum max = new Maximum();
+    static TreeNode head ; // Head of resultant doubly LL
 
     public static void main(String[] args) {
         // max = new Maximum();
@@ -474,6 +505,11 @@ public class BinaryTreeTraversal {
         b.r.left.right = new TreeNode(9);
         b.r.right.left = new TreeNode(10);
         b.r.right.right = new TreeNode(11);
+        
+        
+        //newline("BT to DLL");
+        //BinaryTreeToDLL(b.r);
+        //printList();
 
         newline("levelOrder");
         BinaryTreeTraversal.levelOrder(b.r).stream().forEach(l -> {
