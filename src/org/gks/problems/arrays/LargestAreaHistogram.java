@@ -40,7 +40,7 @@ public class LargestAreaHistogram {
 
 		// Now pop the remaining bars from stack and calculate area with every
 		// popped bar as the smallest bar
-		while (s.empty() == false) {
+		while (!s.isEmpty()) {
 			tp = s.peek();
 			s.pop();
 			area_with_top = hist[tp] * (s.empty() ? i : i - s.peek() - 1);
