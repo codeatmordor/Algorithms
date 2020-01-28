@@ -3,46 +3,54 @@
 package org.gks.problems.string;
 
 // https://www.geeksforgeeks.org/check-two-strings-k-anagrams-not/
+/*
+ * Given two strings of lowercase alphabets and a value k, the task is to find if two strings are K-anagrams of each other or not.
+
+Two strings are called k-anagrams if following two conditions are true.
+
+Both have same number of characters.
+Two strings can become anagram by changing at most k characters in a string.
+ */
 public class CheckKAnagrams {
-  static final int MAX_CHAR = 26;
+	static final int MAX_CHAR = 26;
 
-  static boolean arekAnagrams(String str1, String str2, int k) {
-    // If both strings are not of equal
-    // length then return false
-    int n = str1.length();
-    if (str2.length() != n)
-      return false;
+	static boolean arekAnagrams(String str1, String str2, int k) {
+		// If both strings are not of equal
+		// length then return false
+		int n = str1.length();
+		if (str2.length() != n)
+			return false;
 
-    int[] count1 = new int[MAX_CHAR];
-    int[] count2 = new int[MAX_CHAR];
-    int count = 0;
+		int[] count1 = new int[MAX_CHAR];
+		int[] count2 = new int[MAX_CHAR];
+		int count = 0;
 
-    // Store the occurrence of all characters
-    // in a hash_array
-    for (int i = 0; i < n; i++)
-      count1[str1.charAt(i) - 'a']++;
-    for (int i = 0; i < n; i++)
-      count2[str2.charAt(i) - 'a']++;
+		// Store the occurrence of all characters
+		// in a hash_array
+		for (int i = 0; i < n; i++)
+			count1[str1.charAt(i) - 'a']++;
+		for (int i = 0; i < n; i++)
+			count2[str2.charAt(i) - 'a']++;
 
-    // Count number of characters that are
-    // different in both strings
-    for (int i = 0; i < MAX_CHAR; i++)
-      if (count1[i] > count2[i])
-        count = count + Math.abs(count1[i] - count2[i]);
+		// Count number of characters that are
+		// different in both strings
+		for (int i = 0; i < MAX_CHAR; i++)
+			if (count1[i] > count2[i])
+				count = count + Math.abs(count1[i] - count2[i]);
 
-    // Return true if count is less than or
-    // equal to k
-    return (count <= k);
-  }
+		// Return true if count is less than or
+		// equal to k
+		return (count <= k);
+	}
 
-  public static void main(String[] args) {
-    String str1 = "anagram";
-    String str2 = "grammar";
-    int k = 2;
-    if (arekAnagrams(str1, str2, k))
-      System.out.println("Yes");
-    else
-      System.out.println("No");
-  }
+	public static void main(String[] args) {
+		String str1 = "anagram";
+		String str2 = "grammar";
+		int k = 2;
+		if (arekAnagrams(str1, str2, k))
+			System.out.println("Yes");
+		else
+			System.out.println("No");
+	}
 
 }
