@@ -20,11 +20,33 @@ public class MaximumSumSubarraySizeK {
             }
             return maxSum;
     }
+
+    public static int findMaxSumSubArraySlidingWindow(int[] input, int k){
+        int msum =0; int wsum=0;
+        int start =0;
+
+        for(int i=0;i<=input.length - 1;i++){
+            wsum+=input[i];
+
+            if(i >= k-1){
+                msum = Math.max(wsum,msum);
+                wsum = wsum - input[start];
+                start++;
+            }
+        }
+        return msum;
+    }
     public static void main(String[] args){
         System.out.println("Maximum sum of a subarray of size K: "
                 + MaximumSumSubarraySizeK.findMaxSumSubArray(new int[] { 2, 1, 5, 1, 3, 2 }, 3));
         System.out.println("Maximum sum of a subarray of size K: "
                 + MaximumSumSubarraySizeK.findMaxSumSubArray(new int[] { 2, 3, 4, 1, 5 }, 2));
+
+
+        System.out.println("Maximum sum of a subarray of size K: "
+                + MaximumSumSubarraySizeK.findMaxSumSubArraySlidingWindow(new int[] { 2, 1, 5, 1, 3, 2 }, 3));
+        System.out.println("Maximum sum of a subarray of size K: "
+                + MaximumSumSubarraySizeK.findMaxSumSubArraySlidingWindow(new int[] { 2, 3, 4, 1, 5 }, 2));
     }
 
 }
