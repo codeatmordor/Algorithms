@@ -23,13 +23,21 @@ public class Question implements Search {
   private List<Comment> comments;
   private List<Answer> answers;
 
-  public boolean close();
+  public boolean close() {
+    return false;
+  }
 
-  public boolean undelete();
+  public boolean undelete() {
+    return false;
+  }
 
-  public boolean addComment(Comment comment);
+  public boolean addComment(Comment comment) {
+    return false;
+  }
 
-  public boolean addBounty(Bounty bounty);
+  public boolean addBounty(Bounty bounty) {
+    return false;
+  }
 
   @Override
   public List<Question> search(String query) {

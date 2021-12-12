@@ -19,7 +19,9 @@ public class Account {
     this.id = id;
   }
 
-  public boolean resetPassword();
+  public boolean resetPassword() {
+    return false;
+  }
 
 }
 
