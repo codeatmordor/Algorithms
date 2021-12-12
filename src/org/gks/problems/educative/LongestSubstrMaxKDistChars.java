@@ -1,5 +1,7 @@
 package org.gks.problems.educative;
 
+import org.junit.Assert;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,5 +49,10 @@ public class LongestSubstrMaxKDistChars {
 
         System.out.println("Length of the longest substring: "
                 + LongestSubstrMaxKDistChars.findLength("aaadj", 2));
+
+        System.out.println("Length of the longest substring: "
+                + LongestSubstrMaxKDistChars.findLength("aaadjjjjjjjjj", 2));
+
+        Assert.assertEquals(10, LongestSubstrMaxKDistChars.findLength("aaadjjjjjjjjj", 2));
     }
 }
